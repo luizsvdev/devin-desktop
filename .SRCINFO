@@ -1,6 +1,6 @@
 pkgbase = devin-desktop
 	pkgdesc = A team of agents for every engineer — Devin Desktop (binary pre-built version)
-	pkgver = 3.0.28
+	pkgver = 3.1.7
 	pkgrel = 1
 	url = https://devin.ai/desktop
 	install = devin-desktop.install
@@ -31,7 +31,7 @@ pkgbase = devin-desktop
 	conflicts = windsurf
 	replaces = windsurf-bin
 	options = !strip
-	source = devin-desktop-3.0.28.tar.gz::https://windsurf-stable.codeiumdata.com/linux-x64/stable/e9f7e622f49ec544e97d0e624691d71a963ac40b/Devin-linux-x64-3.0.28.tar.gz
-	sha256sums = e54e1e6fdced5d6cfa55136e553ee9af405c8a048b2a8533e41a39a0be0ec1da
+	source = devin-desktop-3.1.7.tar.gz::https://windsurf-stable.codeiumdata.com/linux-x64/stable/c8b0b9cf70fb84d1dd37796a52d8229a7eaf9c06/Devin-linux-x64-3.1.7.tar.gz
+	sha256sums = 38eab344dfc97232a9890967784664abe555366ed859f33e053938763cb5f612
 
 pkgname = devin-desktop
