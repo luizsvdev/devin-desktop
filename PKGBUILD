@@ -1,7 +1,7 @@
 # Maintainer: Luiz Silva <luizsv.dev@gmail.com>
 pkgname=devin-desktop
 pkgver=3.2.16
-pkgrel=1
+pkgrel=2
 pkgdesc="A team of agents for every engineer — Devin Desktop"
 arch=('x86_64')
 url="https://devin.ai/desktop"

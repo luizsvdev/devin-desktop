@@ -1,7 +1,7 @@
 pkgbase = devin-desktop
 	pkgdesc = A team of agents for every engineer — Devin Desktop
 	pkgver = 3.2.16
-	pkgrel = 1
+	pkgrel = 2
 	url = https://devin.ai/desktop
 	install = devin-desktop.install
 	arch = x86_64
