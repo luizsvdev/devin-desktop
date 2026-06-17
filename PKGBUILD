@@ -2,7 +2,7 @@
 pkgname=devin-desktop
 pkgver=3.2.16
 pkgrel=1
-pkgdesc="A team of agents for every engineer — Devin Desktop (binary pre-built version)"
+pkgdesc="A team of agents for every engineer — Devin Desktop"
 arch=('x86_64')
 url="https://devin.ai/desktop"
 license=('LicenseRef-Devin Desktop')
@@ -22,6 +22,8 @@ depends=(
     'expat'
     'libcups'
     'util-linux-libs'
+    'libxkbfile'
+    'libxrandr'
 )
 optdepends=(
     'libnotify: Desktop notifications'
@@ -29,57 +31,23 @@ optdepends=(
     'libdbusmenu-glib: KDE global menu'
     'gtk2: GTK2 theme support'
     'gvfs: Trash functionality'
+    'libvulkan: Vulkan support'
 )
 options=('!strip')
-conflicts=('windsurf-bin' 'windsurf')
-provides=('devin-desktop')
-replaces=('windsurf-bin')
+conflicts=('devin-desktop-bin' 'windsurf-bin' 'windsurf')
 install=devin-desktop.install
 
-# Download URL from Devin/Windsurf API
-# To update: curl -s https://windsurf-stable.codeium.com/api/update/linux-x64/stable/latest | jq -r '.url'
-# Then update pkgver and the URL below
-_url="https://windsurf-stable.codeiumdata.com/linux-x64/stable/4723f912b3f65de66cc2030b5a6e4f843b00875c/Devin-linux-x64-${pkgver}.tar.gz"
-source=("devin-desktop-${pkgver}.tar.gz::$_url")
-sha256sums=('e456b7a8ecd546536ce3404c477f6f218d4dec46bebd1163f6782ca54734831d')
-
-build() {
-    # Extract the tarball
-    tar -xzf "$srcdir/devin-desktop-${pkgver}.tar.gz" -C "$srcdir"
-}
+# To update: curl -s https://windsurf-stable.codeium.com/api/update/linux-x64-deb/stable/latest | jq -r '.url,.sha256hash'
+_url="https://windsurf-stable.codeiumdata.com/linux-x64-deb/stable/4723f912b3f65de66cc2030b5a6e4f843b00875c/Devin-linux-x64-${pkgver}.deb"
+source=("devin-desktop-${pkgver}.deb::$_url")
+sha256sums=('bab55018853385703662c9af8b14b9d8bad43f02e1648fde9f273aa44f917284')
 
 package() {
-    # The tarball extracts to a directory named "Devin"
-    _appdir="$srcdir/Devin"
+    cd "$srcdir"
+    ar x "devin-desktop-${pkgver}.deb"
+    tar -xJf data.tar.xz -C "$pkgdir"
 
-    # Install to /opt/devin-desktop
-    install -dm755 "$pkgdir/opt/devin-desktop"
-    cp -r "$_appdir"/* "$pkgdir/opt/devin-desktop/"
-
-    # Create symlink in /usr/bin
+    # The deb postinst creates this symlink; we handle it here for pacman
     install -dm755 "$pkgdir/usr/bin"
-    ln -sf "/opt/devin-desktop/devin-desktop" "$pkgdir/usr/bin/devin-desktop"
-
-    # Install desktop entry
-    install -dm755 "$pkgdir/usr/share/applications"
-    cat > "$pkgdir/usr/share/applications/devin-desktop.desktop" << EOF
-[Desktop Entry]
-Name=Devin Desktop
-Comment=A team of agents for every engineer
-GenericName=Text Editor
-Exec=/usr/bin/devin-desktop %U
-Icon=devin-desktop
-Type=Application
-MimeType=x-scheme-handler/devin;x-scheme-handler/codeium;
-Categories=Development;IDE;TextEditor;
-StartupNotify=true
-StartupWMClass=Devin Desktop
-EOF
-
-    # Install icon
-    install -Dm644 "$pkgdir/opt/devin-desktop/resources/app/out/media/code-icon.svg" \
-        "$pkgdir/usr/share/icons/hicolor/scalable/apps/devin-desktop.svg"
-
-    # Fix permissions
-    chmod 755 "$pkgdir/opt/devin-desktop/devin-desktop"
+    ln -sf "/usr/share/devin-desktop/bin/devin-desktop" "$pkgdir/usr/bin/devin-desktop"
 }

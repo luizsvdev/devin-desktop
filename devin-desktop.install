@@ -1,5 +1,6 @@
 post_install() {
     update-desktop-database -q
+    update-mime-database /usr/share/mime
 
     xdg-mime default devin-desktop.desktop x-scheme-handler/devin
     xdg-mime default devin-desktop.desktop x-scheme-handler/codeium
