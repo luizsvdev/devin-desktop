@@ -1,6 +1,6 @@
 # Maintainer: Luiz Silva <luizsv.dev@gmail.com>
 pkgname=devin-desktop
-pkgver=3.1.7
+pkgver=3.2.16
 pkgrel=1
 pkgdesc="A team of agents for every engineer — Devin Desktop (binary pre-built version)"
 arch=('x86_64')
@@ -39,9 +39,9 @@ install=devin-desktop.install
 # Download URL from Devin/Windsurf API
 # To update: curl -s https://windsurf-stable.codeium.com/api/update/linux-x64/stable/latest | jq -r '.url'
 # Then update pkgver and the URL below
-_url="https://windsurf-stable.codeiumdata.com/linux-x64/stable/c8b0b9cf70fb84d1dd37796a52d8229a7eaf9c06/Devin-linux-x64-${pkgver}.tar.gz"
+_url="https://windsurf-stable.codeiumdata.com/linux-x64/stable/4723f912b3f65de66cc2030b5a6e4f843b00875c/Devin-linux-x64-${pkgver}.tar.gz"
 source=("devin-desktop-${pkgver}.tar.gz::$_url")
-sha256sums=('38eab344dfc97232a9890967784664abe555366ed859f33e053938763cb5f612')
+sha256sums=('e456b7a8ecd546536ce3404c477f6f218d4dec46bebd1163f6782ca54734831d')
 
 build() {
     # Extract the tarball
