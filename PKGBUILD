@@ -1,6 +1,6 @@
 # Maintainer: Luiz Silva <luizsv.dev@gmail.com>
 pkgname=devin-desktop
-pkgver=3.2.19
+pkgver=3.2.23
 pkgrel=1
 pkgdesc="A team of agents for every engineer — Devin Desktop"
 arch=('x86_64')
@@ -38,9 +38,9 @@ conflicts=('devin-desktop-bin' 'windsurf-bin' 'windsurf')
 install=devin-desktop.install
 
 # To update: curl -s https://windsurf-stable.codeium.com/api/update/linux-x64-deb/stable/latest | jq -r '.url,.sha256hash'
-_url="https://windsurf-stable.codeiumdata.com/linux-x64-deb/stable/a64a20ba710cc71acfc6705deec6595478acc79e/Devin-linux-x64-${pkgver}.deb"
+_url="https://windsurf-stable.codeiumdata.com/linux-x64-deb/stable/3bd47f77998b2e526fed61a11015b78d6205f295/Devin-linux-x64-${pkgver}.deb"
 source=("devin-desktop-${pkgver}.deb::$_url")
-sha256sums=('c900b01985cf504f95fa576f0b5b7476c49bdece449202526c1a5c29816f1525')
+sha256sums=('b83f89c28f3a5657f58ff91e2c909bdabd25d803e09f678d2ff1e5d9b84f9b7f')
 
 package() {
     cd "$srcdir"
